@@ -22,4 +22,32 @@ public class Main {
 		System.out.print(sb);
 		
 	}
+	
+	public static int getMaxLen(String str) {
+		if (str == null || str.equals("")) {
+			return 0;
+		}
+		char[] charArr = str.toCharArray();
+		int max = 0;
+		int len = 0;
+		for (int i = 0; i < str.length(); i++) {
+			for (int j = 0; i - j >= 0 && i + j < str.length(); j++) {
+				if (charArr[i +j] != charArr[i - j]) {
+					break;
+				}
+				len = 2*j + 1;
+				
+			}
+			max = max > len ? max : len;
+			for (int j = 0; i - j >= 0 && i + j < str.length(); j++) {
+				if (charArr[i + j + 1] != charArr[i - j]) {
+					break;
+				}
+				len = 2 * j + 2;
+				
+			}
+			max =max > len ? max : len;
+		}
+		return max;
+	}
 }
